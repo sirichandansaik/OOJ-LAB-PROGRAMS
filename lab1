@@ -1,0 +1,33 @@
+import java.util.*;
+import java.lang.*;
+
+public class main
+{
+  public staic void main(String args[])
+  {
+      System.out.println("enter a,b,c of the quadratic equation:");
+      Scanner scan = new Scanner (system.in);
+      double a= scan.nextDouble();
+      double b= scan.nextDouble();
+      double c= scan.nextdouble();
+      double d= (b*b)-(4*a*c);
+      System.out.println("D = " +d);
+      if (d==0)
+     {
+          double r1=-b/(2*a);
+          System.out.println("roots are real and distinct.");  
+          System.out.println(r1);
+    }
+    else if(d>0) 
+   {
+          double r1=(-b+Math.sqrt (d))/(2*a);
+          double r2=(-b-Math.sqrt (d))/(2*a);
+          System.out.println("The roots are real and distinct");
+          System.out.println(r1+"  and " +r2);
+    }
+    else
+    {
+         System.out.println(" No real roots are present");
+     }
+   }
+}
