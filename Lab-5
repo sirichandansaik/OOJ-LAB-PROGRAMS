@@ -1,0 +1,158 @@
+import java.util.Scanner;
+abstract class Account 
+{
+    String cust_name;
+    long acc_no;
+    String acc_type;
+    double balance;
+    double min_bal = 1000.0;
+Account (String cust_name, long no,String acc_type,double balance) 
+{
+    this.cust_name=cust_name;
+    this.acc_no=acc_no;
+    this.acc_type=acc_type;
+    this.balance=balance;
+}
+abstract void deposit(double amount);
+abstract void display();
+abstract void withdrawal(double amount);
+}
+
+class Curr_acct extends Account
+{
+    double penalty=100.0;
+    Curr_acct(String cust_name, long acc_no,String acc_type,double balance) 
+    {
+        super(cust_name,acc_no,acc_type,balance);
+        System.out.println("Name of the customer: "+cust_name);
+        System.out.println("Account Number : "+acc_no);
+        System.out.println("Account type: "+acc_type);
+        System.out.println("Balance: "+balance);
+    }
+
+    void deposit(double amount)
+    {
+        this.balance  = this.balance+amount;
+    }
+
+    void display()
+    {
+        System.out.println("Balance is: " + this.balance);
+    }
+    void withdrawal(double amount)
+    {
+        this.balance  = this.balance-amount;
+        imposepenalty();
+    }
+    void imposepenalty()
+    {
+        if(this.balance<min_bal)
+        {
+            this.balance=this.balance-penalty;
+        }
+    }  
+}
+class Sav_acct extends Account
+{  
+    Sav_acct(String cust_name, long acc_no,String acc_type,double balance) 
+    {
+        super(cust_name,acc_no,acc_type,balance);
+        System.out.println("Name of the customer: "+cust_name);
+        System.out.println("Account Number : "+acc_no);
+        System.out.println("Account type: "+acc_type);
+        System.out.println("Balance: "+balance); 
+    }
+    void deposit(double amount)
+    {
+        this.balance = this.balance+amount;
+        interest();
+    }
+    void interest()
+    {
+       int rate=10,time=1;
+       float ci=(float)(this.balance*Math.pow(1+rate/100.0,time)-this.balance);
+       this.balance=this.balance+ci;
+    }
+    void display()
+    { 
+        System.out.println("Balance is: " +this.balance);
+    }
+    void withdrawal(double amount)
+    {
+        this.balance=this.balance-amount;
+    }
+}
+class bank 
+{
+    public static void main(String[] args) 
+    {
+        Scanner ss = new Scanner(System.in);
+        Double amount;
+        int flag = 0;
+        while( flag == 0)
+        {
+            System.out.println("Enter the type of Account:\n1:Current account\n2:Savings account");
+            int choice=ss.nextInt();
+            switch(choice)
+            {
+                case 1:System.out.println("\nCurrent account:\n");
+                Curr_acct c = new Curr_acct("Ravi", 15768912,"current", 30000.00);
+                int flag1 = 0;
+                while( flag1 == 0) 
+                {
+                    System.out.println("Enter your choice\n1:Deposit amount\n2:DisplayBalance\n3:Withdraw");
+                    int choice1= ss.nextInt();
+                    switch (choice1) 
+                    {
+                        case 1:
+                        System.out.println("Enter amount to be deposited:");
+                        amount = ss.nextDouble();
+                        c.deposit(amount);
+                        break;
+    
+                        case 2:
+                        c.display();
+                        break;
+    
+                        case 3:
+                        System.out.println("Enter amount you want to withdraw:");
+                        amount = ss.nextDouble();
+                        c.withdrawal(amount);
+                        break;
+      
+                        default:
+                        flag1 = 1;
+                    }                                                                                                                                                                               
+                }
+                break;
+                case 2:System.out.println("\nSavings account:\n");
+                Sav_acct s = new Sav_acct("Kiran", 68432179,"Savings",6000.00);
+                int flag2 = 0;
+                while(flag2 == 0)
+                {
+                    System.out.println("Enter your choice\n1:Deposit amount\n2:DisplayBalance\n3:Withdraw");
+                    int choice2 = ss.nextInt();
+                    switch (choice2) 
+                    {
+                       case 1:System.out.println("Enter the Amount to be Deposited:");
+                       amount = ss.nextDouble();
+                       s.deposit(amount);
+                       break;
+                       case 2:
+                       s.display();
+                       break;
+                       case 3:
+                       System.out.println("Enter the Amount you want to Withdraw:");
+                       amount = ss.nextDouble();
+                       s.withdrawal(amount);
+                       break;
+                       default:
+                       flag2 =1;
+                    }
+                }
+                break;
+                default:flag=1;
+            }
+        }
+    }
+}
