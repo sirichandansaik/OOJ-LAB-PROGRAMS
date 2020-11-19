@@ -1,0 +1,83 @@
+import java.util.Scanner;
+abstract class Employee {
+	String name,job_title;
+	float weekly_pay;
+	abstract void input();
+	abstract void display();
+	abstract void calculateWeeklyPay();
+}
+
+class HourlyEmployee extends Employee{
+	
+	float pay_rate,hours_worked;
+	void input()
+	{
+		
+		Scanner scr = new Scanner(System.in);
+		System.out.println("Enter name ");
+		name = scr.next();
+		System.out.println("Enter job title ");
+		job_title = scr.next();
+		System.out.println("Enter Pay Rate ");
+		pay_rate = scr.nextFloat();
+		System.out.println("Enter Hours Worked ");
+		hours_worked = scr.nextFloat();
+		calculateWeeklyPay();
+		
+	}
+	
+	void display()
+	{
+		System.out.println("\nName : "+name+"\nJob title : "+job_title+"\nWeekly Pay "+weekly_pay);
+	}
+	
+	void calculateWeeklyPay()
+	{
+		weekly_pay=pay_rate*hours_worked;
+	}
+	
+}
+
+class WeeklyEmployee extends Employee{
+	
+	void input()
+	{
+		
+		Scanner scr = new Scanner(System.in);
+		System.out.println("Enter name ");
+		name = scr.next();
+		System.out.println("Enter job title ");
+		job_title = scr.next();
+		calculateWeeklyPay();
+		
+		
+		
+	}
+	
+	void display()
+	{
+		System.out.println("\nName : "+name+"\nJob title : "+job_title+"\nWeekly Pay "+weekly_pay);
+	}
+	 
+	void calculateWeeklyPay()
+	{
+		Scanner scr = new Scanner(System.in);
+		System.out.println("Enter weekly salary ");
+		weekly_pay = scr.nextFloat();
+	}
+}
+
+public class EmployeeM{
+	public static void main(String args[])
+	{
+		Scanner scr = new Scanner(System.in);
+		HourlyEmployee e1 = new HourlyEmployee();
+		WeeklyEmployee e2 = new WeeklyEmployee();
+		System.out.println("Enter details of hourly employee ");
+		e1.input();
+		System.out.println("Enter details of weekly employee ");
+		e2.input();
+		e1.display();
+		e2.display();
+	}
+ }
