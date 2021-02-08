@@ -1,0 +1,45 @@
+import java.util.Scanner;
+abstract class Company {
+	String name,job_title;
+	float age,wrong age
+	abstract void input();
+	abstract void display();
+}
+
+class wrong age extends Employee{
+	
+	float age more than 18, age less than 60;
+	void input()
+	{
+		
+		Scanner scr = new Scanner(System.in);
+		System.out.println("Enter name ");
+		name = scr.next();
+		System.out.println("Enter job title ");
+		job_title = scr.next();
+		System.out.println("Enter age ");
+		age = scr.nextFloat();
+		System.out.println("Enter age more than 18 ");
+		age_more_than_18 = scr.nextFloat();
+                                     System.out.println("Enter age less than 60");
+                                     age_less_than_60=scr.nextFloat();
+
+
+	}
+	
+	void display()
+	{
+		System.out.println("\nName : "+name+"\nJob title : "+job_title+");
+	}
+class Employee()
+        {
+	public static void main(String args[])
+	{
+		Employee=new employee()
+	}
+                   catch(wrong choice)
+                  {
+                                    system.out.println("Exception"+n);
+                  }
+          }
+}
